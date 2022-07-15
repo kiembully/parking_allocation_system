@@ -1,0 +1,32 @@
+.flex_wrap {
+    display: flex;
+    > div {
+        flex: auto;
+        padding: 10px;
+        border: 1px solid black;
+        h6 {
+            display: flex;
+            span {
+                flex: 1
+            }
+        }
+        ul {
+            margin-left: 0;
+            padding-left: 10px;
+        }
+    }
+    &.scrollable {
+        overflow-y: auto;
+        border: 1px solid black;
+        > div {
+            min-width: 250px;
+            border: none;
+            h3 {
+                display: flex;
+                span {
+                    flex: auto
+                }
+            }
+        }
+    }
+}

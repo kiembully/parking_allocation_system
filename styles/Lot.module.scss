@@ -1,0 +1,34 @@
+.lotWrap {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    border: 1px solid green;
+    padding: 5px;
+    span {
+        h4 {
+            margin: 0 auto 15px auto;
+            text-align: center;
+        }
+        > div {
+            display: flex;
+            span {
+                flex: auto;
+                p {
+                    margin: 0 auto 7px auto;
+                    font-size: 12px;
+                }
+            }
+        }
+        > button {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+    &.incoming {
+        border: 1px solid yellow;
+    }
+    &.occupied {
+        border: 1px solid red;
+    }
+}
