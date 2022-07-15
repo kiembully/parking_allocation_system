@@ -120,33 +120,45 @@ const ParkingControl = () => {
         if (!selectedSlot) {
             return false
         }
-
-        console.log(selectedSlot)
-        Swal.fire({
-            icon: 'info',
-            title: `Entrance ${selectedSlot.entrance}, Slot #${selectedSlot.id}'s Invoice!`,
-            html: `<span>You have to pay PHP${selectedSlot.bill}!</span>`,
-            confirmButtonText: 'Ok',
-            showCancelButton: true,
-          }).then((result) => {
-            if (result.isConfirmed) {
-                const new_arr = arr.map((obj)=>{
-                    if (obj.id === selectedSlot.entrance) {
-                        return {...obj, slots: (
-                            obj.slots.map(slot => {
-                                if (slot.id === selectedSlot.id) {
-                                    return {...slot, is_vacant: true, time_in: 0, bill: 0}
-                                }
-                                return slot
-                            })
-                        )}
-                    }
-                    return obj
-                })
-                setParkingMap(new_arr)
-                Swal.fire({icon:'success', title: 'Transaction Complete!'})
+        
+        const new_arr = arr.map((obj)=>{
+            if (obj.id === selectedSlot.entrance) {
+                return {...obj, slots: (
+                    obj.slots.map(slot => {
+                        if (slot.id === selectedSlot.id) {
+                            return {...slot, is_vacant: true, time_in: 0, bill: 0}
+                        }
+                        return slot
+                    })
+                )}
             }
-          })
+            return obj
+        })
+        setParkingMap(new_arr)
+        // Swal.fire({
+        //     icon: 'info',
+        //     title: `Entrance ${selectedSlot.entrance}, Slot #${selectedSlot.id}'s Invoice!`,
+        //     html: `<span>You have to pay PHP${selectedSlot.bill}!</span>`,
+        //     confirmButtonText: 'Ok',
+        //     showCancelButton: true,
+        //   }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         const new_arr = arr.map((obj)=>{
+        //             if (obj.id === selectedSlot.entrance) {
+        //                 return {...obj, slots: (
+        //                     obj.slots.map(slot => {
+        //                         if (slot.id === selectedSlot.id) {
+        //                             return {...slot, is_vacant: true, time_in: 0, bill: 0}
+        //                         }
+        //                         return slot
+        //                     })
+        //                 )}
+        //             }
+        //             return obj
+        //         })
+        //         setParkingMap(new_arr)
+        //     }
+        //   })
     }
 
     const updateBilling = (slots, selectedSlot, timeIn) => {

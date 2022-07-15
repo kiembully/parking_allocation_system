@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 class Clock extends Component {
+  timer = 0
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +16,11 @@ class Clock extends Component {
   }
   componentDidMount() {
     // console.log(this.props)
-    setInterval(() => this.getElapsedTime(this.props.timeIn), 1000);
+    this.timer = setInterval(() => this.getElapsedTime(this.props.timeIn), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer)
+    this.timer = 0
   }
   leading0(num) {
     return num < 10 ? "0" + num : num;
